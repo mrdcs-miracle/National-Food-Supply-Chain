@@ -25,6 +25,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+      - name: Ensure npm@9 (supports lockfile v3)
+        run: |
+          npm --version || true
+          npm install -g npm@9 || true
+          npm --version
       - run: npm ci
       - run: npm run build
 
@@ -44,5 +49,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
+      - name: Ensure npm@9 (supports lockfile v3)
+        run: |
+          npm --version || true
+          npm install -g npm@9 || true
+          npm --version
       - run: npm ci
       - run: npm test --if-present
