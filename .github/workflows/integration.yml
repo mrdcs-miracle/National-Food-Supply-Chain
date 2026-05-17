@@ -32,6 +32,14 @@ jobs:
           corepack enable || true
           corepack prepare npm@9 --activate || true
           npm --version
+      - name: Debug: print Node & repo info
+        run: |
+          node --version || true
+          npm --version || true
+          echo "-- ls -la --"
+          ls -la
+          echo "-- package-lock.json header --"
+          if [ -f package-lock.json ]; then sed -n '1,40p' package-lock.json; else echo "no package-lock.json"; fi
       - run: npm ci
       - run: npm run build
 
